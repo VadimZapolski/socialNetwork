@@ -1,0 +1,9 @@
+.content img {
+    width: 170px;
+    height: 200px;
+    border-radius: 15px;
+    border-color: black;
+}
+.descriptonBlock {
+    padding: 10px;
+}
