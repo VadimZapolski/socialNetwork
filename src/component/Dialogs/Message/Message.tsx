@@ -5,5 +5,5 @@ type messageType ={
     message: string;
 }
 export const Message = (props: messageType) => {
-    return <div className={s.dialog}>{props.message}</div>
+    return <div className={s.message}>{props.message}</div>
 }
