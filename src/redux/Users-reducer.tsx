@@ -17,7 +17,9 @@ export type UsersType = {
 }
 
 let initialState = {
-    users: [ ] as UsersType[]
+    users: [ ] as UsersType[],
+    pageSize: 5,
+    totalUsersCount: 0
 }
 
 const usersReducer = (state = initialState, action: any) => {
