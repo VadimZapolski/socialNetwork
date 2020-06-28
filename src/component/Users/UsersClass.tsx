@@ -4,9 +4,18 @@ import axios from 'axios';
 import {UsersType} from "../../redux/Users-reducer";
 import userPhoto from '../../assets/images/user.png' ;
 
-class Users extends React.Component<any, any> {
+class UsersClass extends React.Component<any, any> {
     componentDidMount() {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users")
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then((response: any) => {
+                this.props.setUsers(response.data.items);
+                this.props.setTotalUsersCount(response.data.items);
+            })
+    }
+
+    onPageChanged = (pageNumber: number) => {
+        this.props.setCurrentPage(pageNumber);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
             .then((response: any) => {
                 this.props.setUsers(response.data.items);
             })
@@ -14,7 +23,7 @@ class Users extends React.Component<any, any> {
 
     render() {
 
-        let pagesCount = this.props.totalUsersCount / this.props.pageSize
+        let pagesCount = Math.ceil( this.props.totalUsersCount / this.props.pageSize);
 
         let pages = [];
         for (let i=1 ; i <= pagesCount; i++) {
@@ -25,7 +34,9 @@ class Users extends React.Component<any, any> {
         return <div>
             <div>
                 {pages.map( p=> {
-                    <span className={true && style.selectedPage }>{p}</span>
+                   return <span className={this.props.currentPage === p && style.selectedPage }
+                   onClick={ (event) => { this.onPageChanged(p) }}
+                   >{p}</span>
                 })}
 
             </div>
@@ -49,17 +60,10 @@ class Users extends React.Component<any, any> {
                                 }}> Follow </button>}
                         </div>
                     </span>
-                    <span>
-
-                        {/*<span>*/}
-                        {/*    <div>{users.location.country}</div>*/}
-                        {/*    <div>{users.location.city}</div>*/}
-                        {/*</span>*/}
-                </span>
                 </div>)
             }
         </div>
     }
 }
 
-export default Users;
+export default UsersClass;
