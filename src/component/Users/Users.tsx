@@ -1,32 +1,41 @@
-import React from "react";
+import React from 'react';
 import style from './Users.module.css';
-import axios from 'axios';
-import {UsersType} from "../../redux/Users-reducer";
-import userPhoto from '../../assets/images/user.png' ;
+import {UsersType} from '../../redux/Users-reducer';
+import userPhoto from '../../assets/images/user.png';
+
+
 
 let Users = (props: any) => {
 
-let getUsers = () => {
-    if (props.users.length === 0) {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users")
-            .then((response: any) => {
-                props.setUsers(response.data.items);
-            })
+    let pagesCount = Math.ceil( props.totalUsersCount / props.pageSize);
+
+    let pages = [];
+    for (let i=1 ; i <= pagesCount; i++) {
+        pages.push(i);
     }
-}
 
     return <div>
-        <button onClick={getUsers}>Get users</button>
+        <div>
+            {pages.map(p  => {
+                return <span className={props.currentPage === p && style.selectedPage}
+                             onClick={(event) => {
+                                 props.onPageChanged(p);
+                             }}
+                >{p}</span>
+            })}
+
+        </div>
         {
             props.users.map((users: UsersType) => <div key={users.id}>
                     <span>
                         <div>
-<img src={users.photos.small != null ? users.photos.small : userPhoto}  className={style.usersPhoto}/>
-</div>
+                            <img src={users.photos.small != null ? users.photos.small : userPhoto}
+                                 className={style.usersPhoto}/>
+                        </div>
                         <span>
-    <div>{users.status}</div>
-    <div>{users.name}</div>
-</span>
+                           <div>{users.status}</div>
+                            <div>{users.name}</div>
+                        </span>
                         <div>
                             {users.followed ? <button onClick={() => {
                                     props.unfollow(users.id)
@@ -34,15 +43,8 @@ let getUsers = () => {
                                 : <button onClick={() => {
                                     props.follow(users.id)
                                 }}> Follow </button>}
-</div>
+                        </div>
                     </span>
-                <span>
-
-                        {/*<span>*/}
-                    {/*    <div>{users.location.country}</div>*/}
-                    {/*    <div>{users.location.city}</div>*/}
-                    {/*</span>*/}
-                </span>
             </div>)
         }
     </div>
