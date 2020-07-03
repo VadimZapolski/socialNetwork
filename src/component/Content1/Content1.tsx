@@ -1,6 +1,4 @@
 import React from "react";
-import f from './Content1.module.css';
-import MyPosts from "./MyPosts/MyPosts";
 import ProFileInfo from "./ProFileInfo/ProFileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
@@ -13,7 +11,7 @@ const Content1 = (props : any) => {
 
 
     return <div>
-        <ProFileInfo />
+        <ProFileInfo profile={props.props.profile}/>
         <MyPostsContainer />
     </div>
 }
