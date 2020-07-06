@@ -12,7 +12,7 @@ import Content1Container from './component/Content1/Content1Container';
 
 
 
-const App = (props: any) => {
+const App = () => {
     return (
             <div className='app-wrapper'>
                 <Header/>
@@ -21,7 +21,7 @@ const App = (props: any) => {
                     <Route path="/messages" render={() =>
                         <DialogsContainer />}/>
 
-                    <Route path="/profile" render={() =>
+                    <Route path="/profile/:userId?" render={() =>
                     <Content1Container /> } />
 
                     <Route path="/users" render={() =>

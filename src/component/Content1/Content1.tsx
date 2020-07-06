@@ -11,7 +11,7 @@ const Content1 = (props : any) => {
 
 
     return <div>
-        <ProFileInfo profile={props.props.profile}/>
+        <ProFileInfo profile={props.profile}/>
         <MyPostsContainer />
     </div>
 }
