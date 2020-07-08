@@ -5,7 +5,11 @@
 }
 
 .header img{
-    width: 1200px;
+    width: 1120px;
     height: 150px;
 
+}
+.loginBlock {
+    float: right;
+    margin: 5px;
 }

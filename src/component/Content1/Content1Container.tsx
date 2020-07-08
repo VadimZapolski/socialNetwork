@@ -10,7 +10,7 @@ class Content1Container extends React.Component<any, any> {
     componentDidMount() {
         let userId = this.props.match.params.userId;
         if (!userId) {
-            userId = 2;
+            userId = 8757;
         }
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
             .then((response: any) => {
