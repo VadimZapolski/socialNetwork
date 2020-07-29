@@ -1,6 +1,7 @@
 import React from "react";
 import s from './ProFileInfo.module.css';
 import Preloader from '../../Common/Preloader/Preloader';
+import ProfileStatus from "./ProfileStatus";
 
 
 const ProFileInfo = (props: any) => {
@@ -16,7 +17,7 @@ const ProFileInfo = (props: any) => {
         </div>
         <div className={s.descriptonBlock} >
             <img src={props.profile.photos.large}/>
-                FC Uni Minsk
+                <ProfileStatus status={'Hello my Friends'} />
         </div>
     </div>
 }

@@ -30,4 +30,4 @@ let mapDispatchToProps = (dispatch: any) => {
 export default compose(
     connect( mapStateProps, mapDispatchToProps),
     WithAuthRedirect
-)(Dialogs);
+)(Dialogs) as React.FC;

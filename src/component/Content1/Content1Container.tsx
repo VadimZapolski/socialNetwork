@@ -7,7 +7,7 @@ import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';
 import {compose} from 'redux';
 
 
-class Content1Container extends React.Component<any, any> {
+ class Content1Container extends React.Component<any, any> {
 
     componentDidMount() {
         let userId = this.props.match.params.userId;
@@ -29,10 +29,11 @@ let mapStateToProps = (state : any) => ({
     profile: state.profileReducer.profile
 })
 export default compose(
-    connect(mapStateToProps, {getUserProfile}),
     withRouter,
+    connect(mapStateToProps, {getUserProfile}),
+
     WithAuthRedirect
-)(Content1Container)
+)(Content1Container) as React.FC;
 
 
 
