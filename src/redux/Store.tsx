@@ -11,7 +11,8 @@ let store = {
                 {id: 2, message: 'It\'s my first post', likeCount: 20},
             ],
             newPostText: 'напиши пост   ' ,
-            profile : null
+            profile : null ,
+            status: " "
         },
         dialogPage: {
             messages: [

@@ -17,7 +17,8 @@ const ProFileInfo = (props: any) => {
         </div>
         <div className={s.descriptonBlock} >
             <img src={props.profile.photos.large}/>
-                <ProfileStatus status={'Hello my Friends'} />
+                <ProfileStatus status={props.status}
+                updateStatus={props.updateStatus}/>
         </div>
     </div>
 }
