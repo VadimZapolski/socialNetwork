@@ -4,7 +4,8 @@ import React from 'react';
 class ProfileStatus extends React.Component<any, any> {
     state = {
         editMode: false,
-        status: this.props.status
+        status: this.props.status,
+        updateStatus: this.props.updateStatus
     }
 
     activedEditMode = () => {
@@ -17,13 +18,21 @@ class ProfileStatus extends React.Component<any, any> {
         this.setState({
             editMode: false
         });
-        this.props.updateStatus(this.state.status);
+        this.props.updateStatus(this.props.status);
     }
     onStatusChange = (e : any) => {
         this.setState({
             status: e.currentTarget.value
         });
 
+    }
+
+    componentDidUpdate(prevProps:any,prevState:any) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }
     }
 
     render() {

@@ -32,7 +32,8 @@ class Content1Container extends React.Component<any, any> {
 
 let mapStateToProps = (state: any) => ({
     profile: state.profileReducer.profile,
-    status: state.profileReducer.status
+    status: state.profileReducer.status,
+    updateStatus: state.profileReducer.updateStatus
 })
 export default compose(
     withRouter,
