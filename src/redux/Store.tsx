@@ -10,7 +10,6 @@ let store = {
                 {id: 1, message: 'Hey,how are you?', likeCount: 15},
                 {id: 2, message: 'It\'s my first post', likeCount: 20},
             ],
-            newPostText: 'напиши пост   ' ,
             profile : null ,
             status: " "
         },
@@ -29,7 +28,6 @@ let store = {
                 {id: 4, name: 'Nik'},
                 {id: 5, name: 'Alina'},
             ],
-            newMessageBody: " "
         }
     },
     _callSubscriber(_state: any) {
