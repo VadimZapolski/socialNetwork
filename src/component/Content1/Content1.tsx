@@ -13,7 +13,7 @@ const Content1 = (props : any) => {
     return <div>
         <ProFileInfo profile={props.profile}
                      status={props.status}
-                     update={props.updateStatus}/>
+                     updateStatus={props.updateStatus}/>
         <MyPostsContainer />
     </div>
 }

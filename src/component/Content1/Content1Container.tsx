@@ -5,6 +5,7 @@ import {getStatus, getUserProfile, updateStatus} from './../../redux/Profile-red
 import {Redirect, withRouter} from 'react-router-dom';
 import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';
 import {compose} from 'redux';
+import authReducer from '../../redux/Auth-reducer';
 
 
 class Content1Container extends React.Component<any, any> {
@@ -12,7 +13,7 @@ class Content1Container extends React.Component<any, any> {
     componentDidMount() {
         let userId = this.props.match.params.userId;
         if (!userId) {
-            userId = 8757;
+            userId  = this.props.authorizedUserId;
         }
         this.props.getUserProfile(userId);
         this.props.getStatus(userId);
@@ -24,7 +25,7 @@ class Content1Container extends React.Component<any, any> {
                 <Content1 {...this.props}
                           profile={this.props.profile}
                           status={this.props.status}
-                          update={this.props.updateStatus}/>
+                          updateStatus={this.props.updateStatus}/>
             </div>
         )
     }
@@ -33,7 +34,9 @@ class Content1Container extends React.Component<any, any> {
 let mapStateToProps = (state: any) => ({
     profile: state.profileReducer.profile,
     status: state.profileReducer.status,
-    updateStatus: state.profileReducer.updateStatus
+    authorizedUserId: state.authReducer.userId,
+    isAuth: state.authReducer.isAuth
+
 })
 export default compose(
     withRouter,
