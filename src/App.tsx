@@ -58,5 +58,5 @@ const mapStateToProps = (state:any) => ({
 
 export default compose (
     withRouter,
-    connect (mapStateToProps , {initializeApp})) (App);
+    connect (mapStateToProps , {initializeApp})) (App)  as React.ComponentClass;
 

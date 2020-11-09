@@ -1,4 +1,5 @@
 import React from 'react';
+import { updateStatus } from '../../../redux/Profile-reducer';
 
 
 class ProfileStatus extends React.Component<any, any> {
@@ -18,7 +19,7 @@ class ProfileStatus extends React.Component<any, any> {
         this.setState({
             editMode: false
         });
-            this.props.status(this.props.updateStatus);
+        updateStatus(this.props.updateStatus);
     }
     onStatusChange = (e : any) => {
         this.setState({
