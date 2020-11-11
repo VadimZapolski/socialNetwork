@@ -34,6 +34,7 @@ const profileReducer = (state= initialState, action: any) => {
                 profile: action.profile
             };
         case SET_STATUS:
+            debugger
             return {
                 ...state,
                 status: action.status
@@ -44,7 +45,7 @@ const profileReducer = (state= initialState, action: any) => {
 }
 export const addPostActionCreator = (newPostText: any) => ({type: ADD_POST,newPostText}) ;
 export const setUserProfile = (profile:any) => ({ type: SET_USER_PROFILE , profile}) ;
-export const setStatus = (status:any) => ({ type: SET_STATUS , status}) ;
+export const setStatus = (status:string) => ({ type: SET_STATUS , status}) ;
 
 
 export const getUserProfile = (userId:any) => (dispatch: any) => {
@@ -53,14 +54,16 @@ export const getUserProfile = (userId:any) => (dispatch: any) => {
     })
 } ;
 export const getStatus = (userId:any) => (dispatch: any) => {
+    debugger
     profileAPI.getStatus(userId).then((response: any) => {
+        debugger
         dispatch( setStatus(response.data) );
     })
 } ;
-export const updateStatus = (status:any) => (dispatch: any) => {
+export const updateStatus = (status:string) => (dispatch: any) => {
     profileAPI.updateStatus(status).then((response: any) => {
         if (response.data.resultCode === 0 ) {
-            dispatch(updateStatus(status));
+            dispatch(setStatus(status));
         }
     })
 } ;

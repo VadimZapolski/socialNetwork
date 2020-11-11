@@ -1,12 +1,11 @@
 import React from 'react';
-import { updateStatus } from '../../../redux/Profile-reducer';
 
 
 class ProfileStatus extends React.Component<any, any> {
     state = {
         editMode: false,
         status: this.props.status,
-        updateStatus: this.props.updateStatus
+        
     }
 
     activedEditMode = () => {
@@ -15,11 +14,11 @@ class ProfileStatus extends React.Component<any, any> {
         })
     }
 
-    deactivedEditMode = () => {
+    deactivedEditMode  () {
         this.setState({
             editMode: false
         });
-        updateStatus(this.props.updateStatus);
+        this.props.updateStatus(this.state.status)
     }
     onStatusChange = (e : any) => {
         this.setState({

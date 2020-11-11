@@ -11,6 +11,7 @@ import authReducer from '../../redux/Auth-reducer';
 class Content1Container extends React.Component<any, any> {
 
     componentDidMount() {
+        debugger
         let userId = this.props.match.params.userId;
         if (!userId) {
             userId  = this.props.authorizedUserId;

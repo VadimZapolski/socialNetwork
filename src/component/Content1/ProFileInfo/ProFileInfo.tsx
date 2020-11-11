@@ -2,6 +2,7 @@ import React from "react";
 import s from './ProFileInfo.module.css';
 import Preloader from '../../Common/Preloader/Preloader';
 import ProfileStatus from "./ProfileStatus";
+import ProfileStatusHook from './ProfileStatusHook';
 
 
 const ProFileInfo = (props: any) => {
@@ -17,8 +18,8 @@ const ProFileInfo = (props: any) => {
         </div>
         <div className={s.descriptonBlock} >
             <img src={props.profile.photos.large}/>
-                <ProfileStatus status={props.status}
-                                updateStatus={props.updateStatus}/>
+                <ProfileStatusHook status={props.status}
+                                   updateStatus={props.updateStatus}/>
         </div>
     </div>
 }

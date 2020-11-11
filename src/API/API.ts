@@ -34,8 +34,8 @@ export const profileAPI = {
     getStatus(userId: any){
         return instance.get(`profile/status/` + userId);
     },
-    updateStatus(status: any){
-        return instance.put(`profile/status` + {status: status});
+    updateStatus(status: string){
+        return instance.put(`profile/status`,  {status});
     }
 }
 
