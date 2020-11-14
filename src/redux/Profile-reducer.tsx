@@ -13,7 +13,7 @@ let initialState = {
     status: ""
 }
 
-const profileReducer = (state= initialState, action: any) => {
+const profileReducer = (state: { profile: null; posts: ({ likeCount: number; id: number; message: string } | { likeCount: number; id: number; message: string })[]; status: string } | { posts: ({ likeCount: number; id: number; message: string } | { likeCount: number; id: number; message: string })[] } = initialState, action: any) => {
 
     switch (action.type) {
         case ADD_POST:
