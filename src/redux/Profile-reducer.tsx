@@ -3,6 +3,7 @@ import {profileAPI, usersAPI} from '../API/API';
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_STATUS = 'SET-STATUS';
+const DELETE_POST = 'DELETE-POST';
 
 let initialState = {
     posts: [
@@ -10,10 +11,12 @@ let initialState = {
         {id: 2, message: 'It\'s my first post', likeCount: 20},
     ],
     profile: null ,
-    status: ""
+    status: "",
 }
 
-const profileReducer = (state: { profile: null; posts: ({ likeCount: number; id: number; message: string } | { likeCount: number; id: number; message: string })[]; status: string } | { posts: ({ likeCount: number; id: number; message: string } | { likeCount: number; id: number; message: string })[] } = initialState, action: any) => {
+const profileReducer = (state: { profile: null;
+posts: ({ likeCount: number; id: number; message: string } | { likeCount: number; id: number; message: string })[];
+status: string } | { posts: ({ likeCount: number; id: number; message: string } | { likeCount: number; id: number; message: string })[] } = initialState, action: any) => {
 
     switch (action.type) {
         case ADD_POST:
@@ -38,6 +41,11 @@ const profileReducer = (state: { profile: null; posts: ({ likeCount: number; id:
             return {
                 ...state,
                 status: action.status
+            };
+        case DELETE_POST:
+            return {
+                ...state,
+                posts: state.posts.filter(p => p.id !=  action.postId)
             }
         default:
             return state;
@@ -46,6 +54,7 @@ const profileReducer = (state: { profile: null; posts: ({ likeCount: number; id:
 export const addPostActionCreator = (newPostText: any) => ({type: ADD_POST,newPostText}) ;
 export const setUserProfile = (profile:any) => ({ type: SET_USER_PROFILE , profile}) ;
 export const setStatus = (status:string) => ({ type: SET_STATUS , status}) ;
+export const deletePost = (postId: number) => ({ type: DELETE_POST , postId}) ;
 
 
 export const getUserProfile = (userId:any) => (dispatch: any) => {
