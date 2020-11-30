@@ -11,6 +11,8 @@
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
     "axios": "^0.20.0",
+    "classnames": "^2.2.6",
+    "cn": "^0.1.1",
     "has-bigints": "^1.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -45,6 +47,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.5",
+    "@types/classnames": "^2.2.11",
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.5",
     "@types/react-test-renderer": "^16.9.3",

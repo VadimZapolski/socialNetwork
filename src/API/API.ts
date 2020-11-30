@@ -16,22 +16,22 @@ export const usersAPI = {
             .then((response: any) => {
                 return response.data })
     },
-    follow(userId: any) {
+    follow(userId:  number) {
        return instance.post(`follow/${userId}`  )
     },
-    unfollow(userId: any) {
+    unfollow(userId: number) {
        return instance.delete(`follow/${userId}` )
     },
-    getProfile(userId: any){
+    getProfile(userId: number){
     return profileAPI.getProfile(userId)
         }
 }
 
 export const profileAPI = {
-    getProfile(userId: any){
+    getProfile(userId: number){
         return instance.get(`profile/` + userId);
     },
-    getStatus(userId: any){
+    getStatus(userId: number){
         return instance.get(`profile/status/` + userId);
     },
     updateStatus(status: string){

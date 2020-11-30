@@ -2,5 +2,18 @@
 
 .selectedPage{
     font-weight: bold;
+    border-radius: 15px;
 }
 
+.paginator {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 15px;
+}
+
+.users {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 10px;
+}
