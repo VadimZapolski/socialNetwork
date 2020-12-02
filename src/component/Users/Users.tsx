@@ -1,20 +1,20 @@
 import React, {useState} from 'react';
 import style from './Users.module.css';
-import {UsersType} from '../../redux/Users-reducer';
 import userPhoto from '../../assets/images/user.png';
 import {NavLink} from 'react-router-dom';
 import cn from 'classnames'
+import {userType} from '../../types/types';
 
 
 type PropsType = {
     totalUsersCount: number
     pageSize: number
     currentPage: number
-    users: Array<UsersType>
+    users: Array<userType>
     onPageChanged: (pageNumber: number) => void
-    follow: (userId: string) => void
-    unfollow: (userId: string) => void
-    followingInProgress: []
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+    followingInProgress: Array<number>
 }
 
 let Users: React.FC<PropsType> = (props) => {
@@ -59,28 +59,28 @@ let Users: React.FC<PropsType> = (props) => {
         </div>
         <div className={style.users}>
             {
-                props.users.map((users: UsersType) => <div key={users.id}>
+                props.users.map((user: userType) => <div key={user.id}>
                     <span>
                         <div>
-                            <NavLink to={'/profile/' + users.id}>
-                            <img src={users.photos.small != null ? users.photos.small : userPhoto}
+                            <NavLink to={'/profile/' + user.id}>
+                            <img src={user.photos.small != null ? user.photos.small : userPhoto}
                                  className={style.userPhoto}/>
                                  </NavLink>
                         </div>
                         <span>
-                           <div>{users.status}</div>
-                            <div>{users.name}</div>
+                           <div>{user.status}</div>
+                            <div>{user.name}</div>
                         </span>
-                        <div>
-                            {users.followed ?
-                                <button disabled={props.followingInProgress.some(id => id === users.id)}
+                        <div className={style.paddingSecondRow}>
+                            {user.followed ?
+                                <button disabled={props.followingInProgress.some(id => id === user.id)}
                                         onClick={() => {
-                                            props.unfollow(users.id);
+                                            props.unfollow(user.id);
 
                                         }}> Unfollow </button>
-                                : <button disabled={props.followingInProgress.some(id => id === users.id)}
+                                : <button disabled={props.followingInProgress.some(id => id === user.id)}
                                           onClick={() => {
-                                              props.follow(users.id)
+                                              props.follow(user.id)
                                           }}> Follow </button>}
                         </div>
                     </span>

@@ -1,13 +1,28 @@
 const SEND_MESSAGE = 'SEND-MESSAGE';
 
-let initialState = {
+type messagesType = {
+    id: number
+    message: string
+
+}
+type dialogsType = {
+    id: number
+    name: string
+}
+
+type initialStateType = {
+    messages: Array<messagesType>
+    dialogs: Array<dialogsType>
+}
+
+let initialState:initialStateType = {
     messages: [
         {id: 1, message: 'Hi'},
         {id: 2, message: 'How is your it-kamasutra?'},
         {id: 3, message: 'Privet!!'},
         {id: 4, message: 'Good morning'},
         {id: 5, message: 'Yoooo'},
-    ],
+    ] ,
     dialogs: [
         {id: 1, name: 'Vadim'},
         {id: 2, name: 'Vitya'},
@@ -18,7 +33,8 @@ let initialState = {
 }
 
 
-const dialogsReducer = (state = initialState, action: any) => {
+
+const dialogsReducer = (state = initialState, action: sendMessageCreatorType): initialStateType => {
 
     switch (action.type) {
         case SEND_MESSAGE:
@@ -31,7 +47,12 @@ const dialogsReducer = (state = initialState, action: any) => {
             return state;
     }
 }
-    export const sendMessageCreator = (newMessageBody: string) => ({type: SEND_MESSAGE, newMessageBody});
+
+type sendMessageCreatorType = {
+    type: typeof SEND_MESSAGE
+    newMessageBody:string
+}
+export const sendMessageCreator = (newMessageBody: string):sendMessageCreatorType => ({type: SEND_MESSAGE, newMessageBody});
 
 
-    export default dialogsReducer;
+export default dialogsReducer;
