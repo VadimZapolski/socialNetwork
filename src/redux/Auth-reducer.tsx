@@ -1,5 +1,7 @@
-import {authAPI, ResultCodesEnum} from '../API/API';
+import {ResultCodesEnum} from '../API/API';
 import {stopSubmit} from 'redux-form';
+import {authAPI} from '../API/authAPI';
+import {BaseThunkType} from './Redux-store';
 
 const SET_USER_DATA = 'SET-USER-DATA';
 
@@ -36,6 +38,8 @@ type ActionPayloadType ={
     login: string | null,
     isAuth: boolean
 }
+
+
 type setAuthUserDataType = {
     type: typeof SET_USER_DATA
     payload: ActionPayloadType
@@ -46,7 +50,15 @@ export const setAuthUserData = (userId: number | null ,
                                 isAuth: boolean):setAuthUserDataType => ({
     type: SET_USER_DATA, payload : {userId,email,login,isAuth}});
 
-export const getAuthUserData = () => async (dispatch:any) => {
+
+
+// Thunk
+
+
+type ThunkType = BaseThunkType<setAuthUserDataType | ReturnType <typeof stopSubmit>>
+
+
+export const getAuthUserData = ():ThunkType => async (dispatch) => {
     let meData = await authAPI.me()
         if (meData.resultCode === ResultCodesEnum.Success) {
             let {id, email, login} = meData.data;
@@ -54,7 +66,7 @@ export const getAuthUserData = () => async (dispatch:any) => {
     }
 }
 
-export const login = (email: string , password: string ,rememberMe: boolean) => async (dispatch:any) => {
+export const login = (email: string , password: string ,rememberMe: boolean):ThunkType => async (dispatch) => {
     // создаём переменную респонс, результат которым зарезолвится промис.
     let loginData = await authAPI.login(email, password, rememberMe)
         if (loginData.resultCode === ResultCodesEnum.Success) {
@@ -69,7 +81,7 @@ export const login = (email: string , password: string ,rememberMe: boolean) => 
         }
 }
 
-export const logout = () => async (dispatch:any) => {
+export const logout = ():ThunkType => async (dispatch) => {
     let response = await authAPI.logout()
         if (response.data.resultCode ===0) {
             dispatch(setAuthUserData(null ,null, null, false ) );

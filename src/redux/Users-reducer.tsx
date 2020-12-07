@@ -1,6 +1,7 @@
-import {usersAPI} from '../API/API';
 import {updateObjectInArray} from '../utils/object-helper';
 import {userType} from '../types/types';
+import {usersAPI} from '../API/usersAPI';
+import {BaseThunkType} from './Redux-store';
 
 
 const FOLLOW = 'FOLLOW';
@@ -133,9 +134,10 @@ export const toggleFollowingProgress = (isFetching: boolean, userId: number):tog
     userId
 });
 
+type ThunkType = BaseThunkType<ActionUsersReducerType>
 
-export const requestUsers = (page: number, pageSize: number) => {
-    return async (dispatch: any) => {
+export const requestUsers = (page: number, pageSize: number):ThunkType => {
+    return async (dispatch) => {
         dispatch(toggleIsFetchingAC(true));
         dispatch(setCurrentPageAC(page));
 
@@ -156,15 +158,15 @@ const  followUnfolowFlow = async (dispatch:any,UserId:number,apiMethod:any,actio
 }
 
 
-export const follow = (UserId: number) => {
-    return async (dispatch: any) => {
+export const follow = (UserId: number):ThunkType => {
+    return async (dispatch) => {
         let apiMethod = usersAPI.follow.bind(usersAPI);
         let actionCreator = followSuccess;
         followUnfolowFlow(dispatch,UserId,apiMethod,actionCreator)
     }
 }
-export const unfollow = (UserId: number) => {
-    return async (dispatch: any) => {
+export const unfollow = (UserId: number):ThunkType => {
+    return async (dispatch) => {
         let apiMethod = usersAPI.unfollow.bind(usersAPI);
         let actionCreator = unfollowSuccess;
         followUnfolowFlow(dispatch,UserId,apiMethod,actionCreator)

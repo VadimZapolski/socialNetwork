@@ -8,12 +8,15 @@ export type postsType = {
 
 export type profileType = {
     userId: number
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
     fullName: string
     contacts: contactsType
     photos: photosType
 };
 
 export type contactsType = {
+    key:string
     github: string
     vk: string
     facebook: string

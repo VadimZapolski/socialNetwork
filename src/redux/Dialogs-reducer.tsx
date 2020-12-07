@@ -1,11 +1,11 @@
 const SEND_MESSAGE = 'SEND-MESSAGE';
 
-type messagesType = {
+export type messagesType = {
     id: number
     message: string
 
 }
-type dialogsType = {
+export type dialogsType = {
     id: number
     name: string
 }
@@ -13,6 +13,7 @@ type dialogsType = {
 type initialStateType = {
     messages: Array<messagesType>
     dialogs: Array<dialogsType>
+    newMessageBody: string
 }
 
 let initialState:initialStateType = {
@@ -29,7 +30,8 @@ let initialState:initialStateType = {
         {id: 3, name: 'Pasha'},
         {id: 4, name: 'Nik'},
         {id: 5, name: 'Alina'},
-    ]
+    ],
+    newMessageBody: ''
 }
 
 

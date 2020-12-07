@@ -4,16 +4,25 @@ import Post from './Post/Posts';
 import {Field, reduxForm} from 'redux-form';
 import {maxLengthCreator, requiredField} from '../../../utils/validators/validators';
 import {Textarea} from '../../Common/FormControls/FormControls';
+import {postsType} from '../../../types/types';
 
 const maxLength100= maxLengthCreator(100)
 
-const MyPosts = React.memo((props: any) => {
-console.log('hello')
-    let postsElements =
-        props.posts.map((props: { message: string; likeCount: number; }) =>
-            <Post message={props.message} likeCount={props.likeCount}/>);
+type MyPostsType = {
+    posts: Array<postsType>
+    addPost:(newPostText: string) => void
+}
 
-    let newPostElement: any = React.createRef();
+type postsElementsType = {
+    message: string
+    likeCount: number
+}
+
+const MyPosts = React.memo((props: MyPostsType) => {
+
+    let postsElements =
+        props.posts.map((props: postsElementsType) =>
+            <Post message={props.message} likeCount={props.likeCount}/>);
 
     let onAddPost = (values: any) => {
         props.addPost(values.newPostText);
@@ -31,7 +40,7 @@ console.log('hello')
 
 });
 
-const AddNewPostForm = (props: any) => {
+const AddNewPostForm = (props:any) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>

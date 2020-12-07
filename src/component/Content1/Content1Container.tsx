@@ -54,11 +54,11 @@ let mapStateToProps = (state: AppStateType) => ({
     isAuth: state.authReducer.isAuth
 
 })
-export default compose(
+export default compose <React.ComponentType>(
     withRouter,
     connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, savePhoto}),
     WithAuthRedirect
-)(Content1Container) as React.FC;
+)(Content1Container) ;
 
 
 

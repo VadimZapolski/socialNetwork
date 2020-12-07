@@ -4,9 +4,10 @@ import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';
 import {compose} from 'redux';
+import {AppStateType} from '../../redux/Redux-store';
 
 
-let mapStateProps = (state: any) => {
+let mapStateProps = (state: AppStateType) => {
     return{
         messages: state.dialogsReducer.messages,
         dialogs: state.dialogsReducer.dialogs,
@@ -22,7 +23,7 @@ let mapDispatchToProps = (dispatch: any) => {
 }
 
 
-export default compose(
+export default compose <React.ComponentType>(
     connect( mapStateProps, mapDispatchToProps),
     WithAuthRedirect
-)(Dialogs) as React.FC;
+)(Dialogs) ;
